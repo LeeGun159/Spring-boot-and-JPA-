@@ -9,30 +9,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
 @Setter
+@Getter
 public class Category {
     @Id
     @GeneratedValue
-    @Column(name="category_id")
+    @Column(name = "category_id")
     private Long id;
 
     private String name;
-    private int stockQuantity;
+
     @ManyToMany
-    @JoinTable(name = "categoty_item",
-            joinColumns =@JoinColumn(name = "category_id"),
-                inverseJoinColumns = @JoinColumn(name = "item_id"))
+    @JoinTable(name = "category_item",
+        joinColumns = @JoinColumn(name = "category_id"),
+        inverseJoinColumns = @JoinColumn(name = "item_id"))
     private List<Item> items = new ArrayList<>();
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne
     @JoinColumn(name = "parent_id")
     private Category parent;
 
     @OneToMany(mappedBy = "parent")
     private List<Category> child = new ArrayList<>();
-
-    public void addChildCatgory(Category child) {
-        this.child.add(child);
-        child.setParent(this);
-    }
 }
