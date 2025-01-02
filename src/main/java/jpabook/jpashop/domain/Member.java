@@ -17,6 +17,9 @@ public class Member {
     private String name;
     @Embedded
     private Address address;
+
     @OneToMany(mappedBy = "member") //order 테이블에 있는 member 필드에 의해서 매핑 됐단 뜻
     private List<Order> orders = new ArrayList<>();
+
+
 }
