@@ -31,7 +31,7 @@ public class MemberRepository {
     }
 
     public List<Member> finaAll() {
-        return em.createQuery("selet m from Member m", Member.class)
+        return em.createQuery("select m from Member m", Member.class)
                 .getResultList();
     }
     //이름으로 검샥할때
