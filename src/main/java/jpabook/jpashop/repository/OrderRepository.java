@@ -4,7 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.*;
 import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderItem;
+import jpabook.jpashop.repository.order.simplequery.OrderSimpleQueryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderRepository {
     private final EntityManager em;
-
+    private final OrderSimpleQueryRepository orderSimpleQueryRepository;
     public void save(Order order) {
         em.persist(order);
     }
@@ -110,4 +110,6 @@ public class OrderRepository {
                                 " join fetch o.delivery d", Order.class)
                 .getResultList();
     }
+
+
 }
